@@ -1,0 +1,798 @@
+﻿<Window
+    x:Class="ThemeChange.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ThemeChange"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="930"
+    Height="600"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem
+                Header="主题"
+                ItemsSource="{Binding All_Themes}">
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="ThemeSelect"
+                            Content="{Binding}" />
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+                <!--<MenuItem Header="Lavendar" />
+                <MenuItem Header="Rose" />
+                <MenuItem Header="Sunflower" />-->
+            </MenuItem>
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Window.Resources>
+        <Style
+            x:Key="IconTextBlock"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="/Fonts/#iconfont" />
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{DynamicResource Text_100}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource Backgroud_100}" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GridSplitter
+            Grid.Column="0"
+            Width="0.5"
+            Margin="0,30,0,30">
+            <GridSplitter.Background>
+                <SolidColorBrush Color="{DynamicResource Text_200}" />
+            </GridSplitter.Background>
+        </GridSplitter>
+        <!--  左边 侧边栏  -->
+        <DockPanel LastChildFill="False">
+            <Border
+                Width="40"
+                Height="40"
+                Margin="0,30,0,10"
+                Padding="7"
+                CornerRadius="20"
+                DockPanel.Dock="Top">
+                <Border.Background>
+                    <SolidColorBrush Color="{DynamicResource Backgroud_200}" />
+                </Border.Background>
+                <Border CornerRadius="20">
+
+                    <Border.Background>
+                        <ImageBrush ImageSource="\Fonts\touxiang.jpg" />
+                    </Border.Background>
+                </Border>
+            </Border>
+            <TextBlock
+                HorizontalAlignment="Center"
+                DockPanel.Dock="Top"
+                Text="Hue Brrew">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                </TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock
+                HorizontalAlignment="Center"
+                DockPanel.Dock="Top"
+                FontSize="11"
+                Text="Designer">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                </TextBlock.Foreground>
+            </TextBlock>
+
+            <ListBox
+                Margin="0,80,0,0"
+                Background="Transparent"
+                BorderThickness="0"
+                DockPanel.Dock="Top"
+                ItemsSource="{Binding DataContext.NavMenus}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Foreground">
+                            <Setter.Value>
+                                <SolidColorBrush Color="{DynamicResource Text_200}" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border
+                                        Name="Border"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                                            <Setter TargetName="Border" Property="Background">
+                                                <Setter.Value>
+                                                    <SolidColorBrush
+                                                        Opacity="0.1"
+                                                        Color="{DynamicResource Primary_200}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush
+                                                        Opacity="0.7"
+                                                        Color="{DynamicResource Text_100}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                                            <Setter TargetName="Border" Property="Background">
+                                                <Setter.Value>
+                                                    <SolidColorBrush
+                                                        Opacity="0.3"
+                                                        Color="{DynamicResource Primary_200}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="25,0,0,0">
+                            <DockPanel LastChildFill="False">
+                                <Border
+                                    Width="30"
+                                    Height="30"
+                                    Margin="0,7.5,0,7.5"
+                                    VerticalAlignment="Center"
+                                    CornerRadius="4">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{DynamicResource Primary_100}" />
+                                    </Border.Background>
+                                    <TextBlock
+                                        Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Foreground}"
+                                        Style="{StaticResource IconTextBlock}"
+                                        Text="{Binding Icon}" />
+                                </Border>
+                                <TextBlock
+                                    Name="Text"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Foreground}"
+                                    Text="{Binding Title}" />
+                            </DockPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <DockPanel
+                Margin="40,0,0,100"
+                DockPanel.Dock="Bottom"
+                LastChildFill="False">
+                <TextBlock
+                    FontSize="25"
+                    Style="{StaticResource IconTextBlock}"
+                    Text="&#xe68d;" />
+                <TextBlock
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Log Out">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource Text_200}" />
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </DockPanel>
+        </DockPanel>
+        <Grid
+            Grid.Column="1"
+            Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="370" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Row="0"
+                Width="220"
+                Height="20"
+                Margin="0,20,0,0"
+                Padding="5,0,0,0"
+                HorizontalAlignment="Left"
+                CornerRadius="8"
+                DockPanel.Dock="Top">
+                <Border.Background>
+                    <SolidColorBrush Color="{DynamicResource Backgroud_200}" />
+                </Border.Background>
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="Open a Deposit and get a ....">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource Text_200}" />
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Border>
+            <StackPanel
+                Grid.Row="1"
+                Margin="0,10,0,0"
+                Orientation="Vertical">
+                <Border
+                    Width="300"
+                    Height="120"
+                    HorizontalAlignment="Left"
+                    CornerRadius="10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                            <GradientStop Offset="0.4" Color="{DynamicResource Primary_100}" />
+                            <GradientStop Offset="1" Color="{DynamicResource Primary_200}" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            Margin="20,20,0,0"
+                            FontSize="15"
+                            FontWeight="DemiBold"
+                            Text="Total Balance">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{DynamicResource Text_100}" />
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                        <DockPanel Margin="20,10,0,0">
+                            <TextBlock
+                                Margin="0,0,8,0"
+                                VerticalAlignment="Bottom"
+                                DockPanel.Dock="Left"
+                                FontSize="15"
+                                Text="$">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                FontSize="35"
+                                FontWeight="Thin"
+                                Text="439,177">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+                <Border
+                    Height="220"
+                    Margin="0,10,0,0"
+                    CornerRadius="15">
+                    <Border.Background>
+                        <SolidColorBrush Color="{DynamicResource Backgroud_200}" />
+                    </Border.Background>
+                    <StackPanel
+                        Margin="20"
+                        Orientation="Vertical">
+                        <TextBlock Text="Income">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{DynamicResource Text_100}" />
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                        <DockPanel
+                            Margin="0,20,0,0"
+                            LastChildFill="False">
+                            <Border
+                                Width="30"
+                                Height="40"
+                                CornerRadius="4">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource Primary_300}" />
+                                </Border.Background>
+                                <TextBlock
+                                    Style="{StaticResource IconTextBlock}"
+                                    Text="&#xe666;">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Accent_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                            <StackPanel
+                                Margin="20,0,0,0"
+                                Orientation="Vertical">
+                                <TextBlock Text="Kriti Sharma ">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <TextBlock
+                                    FontSize="10"
+                                    Text="2 minutes ago">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </StackPanel>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                FontSize="10"
+                                Text="1000">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                FontSize="10"
+                                Text="+$">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </DockPanel>
+                        <DockPanel
+                            Margin="0,10,0,0"
+                            LastChildFill="False">
+                            <Border
+                                Width="30"
+                                Height="40"
+                                CornerRadius="4">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource Primary_300}" />
+                                </Border.Background>
+                                <TextBlock
+                                    Style="{StaticResource IconTextBlock}"
+                                    Text="&#xe666;">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Accent_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                            <StackPanel
+                                Margin="20,0,0,0"
+                                Orientation="Vertical">
+                                <TextBlock Text="James Hudson ">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <TextBlock
+                                    FontSize="10"
+                                    Text="4 day ago">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </StackPanel>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                FontSize="10"
+                                Text="2154">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                FontSize="10"
+                                Text="+$">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </DockPanel>
+                        <DockPanel
+                            Margin="0,10,0,0"
+                            LastChildFill="False">
+                            <Border
+                                Width="30"
+                                Height="40"
+                                CornerRadius="4">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource Primary_300}" />
+                                </Border.Background>
+                                <TextBlock
+                                    Style="{StaticResource IconTextBlock}"
+                                    Text="&#xe666;">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Accent_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                            <StackPanel
+                                Margin="20,0,0,0"
+                                Orientation="Vertical">
+                                <TextBlock Text="Jackie ">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <TextBlock
+                                    FontSize="10"
+                                    Text="1 week age">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </StackPanel>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                FontSize="10"
+                                Text="5642">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                FontSize="10"
+                                Text="+$">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="1"
+                Orientation="Vertical">
+                <Border
+                    Height="280"
+                    Margin="20,10,32,0"
+                    CornerRadius="15"
+                    DockPanel.Dock="Top">
+                    <Border.Background>
+                        <SolidColorBrush Color="{DynamicResource Backgroud_200}" />
+                    </Border.Background>
+                    <lvc:CartesianChart
+                        Grid.Row="2"
+                        Margin="0,0,0,0"
+                        DataTooltip="{x:Null}"
+                        Hoverable="False"
+                        Series="{Binding LastHourSeries}">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis MinValue="2" />
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Border>
+                <Border
+                    Height="60"
+                    Margin="20,10,32,0"
+                    CornerRadius="10">
+                    <Border.Background>
+                        <SolidColorBrush Color="{DynamicResource Backgroud_200}" />
+                    </Border.Background>
+                    <DockPanel LastChildFill="False">
+                        <StackPanel
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                            <TextBlock
+                                FontSize="10"
+                                Text="Income">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                Margin="0,8,0,0"
+                                Text="$3500">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </StackPanel>
+                        <Border
+                            Width="30"
+                            Height="30"
+                            Margin="15,0,0,0"
+                            CornerRadius="15">
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource Backgroud_100}" />
+                            </Border.Background>
+                            <TextBlock
+                                FontSize="15"
+                                Style="{StaticResource IconTextBlock}"
+                                Text="&#xe618;">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Border>
+                        <Border
+                            Width="30"
+                            Height="30"
+                            Margin="15,0,20,0"
+                            CornerRadius="15"
+                            DockPanel.Dock="Right">
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource Backgroud_100}" />
+                            </Border.Background>
+                            <TextBlock
+                                FontSize="15"
+                                Style="{StaticResource IconTextBlock}"
+                                Text="&#xe665;">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Border>
+                        <StackPanel
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
+                            Orientation="Vertical">
+                            <TextBlock
+                                FontSize="10"
+                                Text="Spendings">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                Margin="0,8,0,0"
+                                Text="$666">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </StackPanel>
+
+                    </DockPanel>
+                </Border>
+            </StackPanel>
+
+            <!--    -->
+            <Border
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Height="140"
+                CornerRadius="15">
+                <Border.Background>
+                    <SolidColorBrush Color="{DynamicResource Backgroud_200}" />
+                </Border.Background>
+                <StackPanel
+                    Margin="0,10,35,0"
+                    Orientation="Horizontal">
+                    <StackPanel
+                        Margin="70,0,0,0"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                        <TextBlock
+                            FontSize="15"
+                            FontWeight="DemiBold"
+                            Text="Inverstments">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{DynamicResource Text_100}" />
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                        <TextBlock
+                            Margin="0,5,0,0"
+                            FontSize="10"
+                            Text="Change since last login">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{DynamicResource Text_200}" />
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </StackPanel>
+                    <Border
+                        Width="60"
+                        Height="90"
+                        Margin="55,0,0,0"
+                        CornerRadius="5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource Backgroud_100}" />
+                        </Border.Background>
+                        <StackPanel Orientation="Vertical">
+                            <Border
+                                Height="20"
+                                Margin="7"
+                                CornerRadius="8">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource Primary_200}" />
+                                </Border.Background>
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="APPL">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock
+                                Margin="0,5,0,10"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="9"
+                                Text="Apple Inc">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="+3%">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Width="60"
+                        Height="90"
+                        Margin="30,0,0,0"
+                        CornerRadius="5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource Backgroud_100}" />
+                        </Border.Background>
+                        <StackPanel Orientation="Vertical">
+                            <Border
+                                Height="20"
+                                Margin="7"
+                                CornerRadius="8">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource Primary_200}" />
+                                </Border.Background>
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="TSLA">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock
+                                Margin="0,5,0,10"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="9"
+                                Text="Tesla Inc">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="-1.9%">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Width="60"
+                        Height="90"
+                        Margin="30,0,0,0"
+                        CornerRadius="5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource Backgroud_100}" />
+                        </Border.Background>
+                        <StackPanel Orientation="Vertical">
+                            <Border
+                                Height="20"
+                                Margin="7"
+                                CornerRadius="8">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource Primary_200}" />
+                                </Border.Background>
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="EBAY">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock
+                                Margin="0,5,0,10"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="9"
+                                Text="eBay Inc">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_200}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="+1.1%">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Width="60"
+                        Height="90"
+                        Margin="30,0,0,0"
+                        CornerRadius="5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource Primary_100}" />
+                        </Border.Background>
+                        <StackPanel Orientation="Vertical">
+
+                            <TextBlock
+                                Margin="0,20,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="View all">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <Border
+                                Width="25"
+                                Height="25"
+                                Margin="0,20,0,0"
+                                HorizontalAlignment="Center"
+                                CornerRadius="15">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource Backgroud_100}" />
+                                </Border.Background>
+                                <TextBlock
+                                    FontSize="15"
+                                    Style="{StaticResource IconTextBlock}"
+                                    Text="&#xe60b;">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource Text_100}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

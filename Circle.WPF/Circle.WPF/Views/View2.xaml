@@ -1,0 +1,115 @@
+﻿<UserControl
+    x:Class="Circle.WPF.Views.View2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Circle.WPF.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Circle.WPF.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Background="#2c343c">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <UniformGrid
+            HorizontalAlignment="Center"
+            Columns="3">
+            <controls:CircleTime
+                Width="200"
+                Height="200"
+                Margin="10"
+                ScaleBrush="#fa4472"
+                Value="{Binding Second}">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="50"
+                        FontWeight="Bold"
+                        Foreground="#fa4472"
+                        Text="{Binding Second}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontWeight="DemiBold"
+                        Foreground="#fa4472"
+                        Text="Seconds" />
+                </StackPanel>
+            </controls:CircleTime>
+            <controls:CircleTime
+                Margin="10"
+                ScaleBrush="#ffde00"
+                Value="{Binding Second}">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="50"
+                        FontWeight="Bold"
+                        Foreground="#ffde00"
+                        Text="{Binding Second}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontWeight="DemiBold"
+                        Foreground="#ffde00"
+                        Text="Seconds" />
+                </StackPanel>
+            </controls:CircleTime>
+            <controls:CircleTime
+                Width="200"
+                Height="200"
+                Margin="10"
+                ScaleBrush="#06d941"
+                Value="{Binding Second}">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="50"
+                        FontWeight="Bold"
+                        Foreground="#06d941"
+                        Text="{Binding Second}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontWeight="DemiBold"
+                        Foreground="#06d941"
+                        Text="Seconds" />
+                </StackPanel>
+            </controls:CircleTime>
+        </UniformGrid>
+        <StackPanel Grid.Row="1">
+            <controls:CircleTime
+                Width="200"
+                Height="200"
+                Margin="10"
+                ScaleBrush="#8b3c80"
+                Value="{Binding ElementName=slider, Path=Value}">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="50"
+                        FontWeight="Bold"
+                        Foreground="#8b3c80"
+                        Text="{Binding RelativeSource={RelativeSource AncestorType=controls:CircleTime},Path=Value,StringFormat={}{0:F0}}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontWeight="DemiBold"
+                        Foreground="#8b3c80"
+                        Text="Seconds" />
+                </StackPanel>
+            </controls:CircleTime>
+            <Slider
+                x:Name="slider"
+                Width="200"
+                Maximum="59"
+                Minimum="0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Q/d7UNpL9xzg5l7Qmo5J29mwUBSzRXZUqUIVHqUIngetp/09ZWAztWfF2Vou6xP9Y44SVomqmerm6PmUO9y4pw==",
+  "success": true,
+  "projectFilePath": "D:\\New_D_Net\\github_\\bilibili\\publicContent\\Circle.WPF\\Circle.WPF\\Circle.WPF.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.2\\communitytoolkit.mvvm.8.2.2.nupkg.sha512"
+  ],
+  "logs": []
+}

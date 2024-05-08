@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HowTo.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace HowTo.Demos
     /// <summary>
     /// SideNavigation.xaml 的交互逻辑
     /// </summary>
+    /// 
+    [Demo]
     public partial class SideNavigation : UserControl
     {
         public SideNavigation()

@@ -38,3 +38,4 @@ D:\New_D_Net\编程项目\HowTo\HowTo\HowTo\obj\Debug\net8.0-windows\Demos\SideN
 D:\New_D_Net\编程项目\HowTo\HowTo\HowTo\obj\Debug\net8.0-windows\Demos\SideNavigation.baml
 D:\New_D_Net\编程项目\HowTo\HowTo\HowTo\obj\Debug\net8.0-windows\Demos\ModalBox.g.cs
 D:\New_D_Net\编程项目\HowTo\HowTo\HowTo\obj\Debug\net8.0-windows\Demos\ModalBox.baml
+D:\New_D_Net\编程项目\HowTo\HowTo\HowTo\obj\Debug\net8.0-windows\HowTo.sourcelink.json

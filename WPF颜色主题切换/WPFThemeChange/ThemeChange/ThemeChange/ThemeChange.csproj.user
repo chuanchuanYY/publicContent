@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\DarkSapphineBlue.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\DefaultTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\ElectricCityNights.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\HackerNews.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Lavendar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\LightBlue.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Navyandblush.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Turquoise.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "EkOO2HUvJ/aQDBpBx5VkJ6O2OQeZavCuedYkzEl20l9+L76xSzDhCBYiEuV+rjUMsBHu1M+E1bJlZqxuZbXJaA==",
+  "success": true,
+  "projectFilePath": "D:\\New_D_Net\\编程项目\\HowTo\\HowTo\\HowTo\\HowTo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.2\\communitytoolkit.mvvm.8.2.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512"
+  ],
+  "logs": []
+}

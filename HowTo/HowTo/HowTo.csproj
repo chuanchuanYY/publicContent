@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\LoginForm\img1.png" />
+    <None Remove="Assets\Slideshow\img1.jpg" />
+    <None Remove="Assets\Slideshow\img2.jpg" />
+    <None Remove="Assets\Slideshow\img3.jpg" />
+    <None Remove="Assets\Slideshow\img4.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\LoginForm\img1.png" />
+    <Resource Include="Assets\Slideshow\img1.jpg" />
+    <Resource Include="Assets\Slideshow\img2.jpg" />
+    <Resource Include="Assets\Slideshow\img3.jpg" />
+    <Resource Include="Assets\Slideshow\img4.jpg" />
+  </ItemGroup>
+
+</Project>

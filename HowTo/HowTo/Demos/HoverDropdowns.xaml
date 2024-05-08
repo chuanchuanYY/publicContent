@@ -1,0 +1,91 @@
+﻿<UserControl
+    x:Class="HowTo.Demos.HoverDropdowns"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:HowTo.Demos"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="Border">
+            <Setter Property="Background" Value="#ffffff" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#e7e9eb" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock
+            FontSize="20"
+            Text="Hover Dropdowns" />
+        <Button
+            x:Name="popButton"
+            Grid.Row="1"
+            Width="100"
+            Height="40"
+            Margin="15"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#f4511e"
+            Foreground="White"
+            MouseEnter="popButton_MouseEnter"
+            MouseLeave="popButton_MouseLeave">
+
+            <StackPanel>
+                <TextBlock Text="Hover" />
+                <Popup
+                    x:Name="pop"
+                    MouseEnter="pop_MouseEnter"
+                    MouseLeave="pop_MouseLeave"
+                    Placement="Bottom"
+                    PlacementTarget="{Binding ElementName=popButton}"
+                    PopupAnimation="Scroll"
+                    >
+                    <Popup.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                           ShadowDepth="0"
+                                          Color="Black"/>
+                    </Popup.Effect>
+                    <StackPanel>
+                        <Border
+                            Width="120"
+                            Height="40"
+                            BorderThickness="0">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Text="Link1" />
+                        </Border>
+                        <Border
+                            Width="120"
+                            Height="40"
+                            BorderThickness="0">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Text="Link1" />
+                        </Border>
+                        <Border
+                            Width="120"
+                            Height="40"
+                            BorderThickness="0">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Text="Link1" />
+                        </Border>
+                    </StackPanel>
+                </Popup>
+            </StackPanel>
+        </Button>
+    </Grid>
+</UserControl>
